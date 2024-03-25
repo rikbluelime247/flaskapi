@@ -1,0 +1,74 @@
+<!---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trivia Question</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">-->
+
+ {% extends 'base.html' %}
+
+    
+        {% block title %}Quiz{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">{{ question }}</h1>
+    </div>
+    <form method="POST">
+        {% for answer in answers %}
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="answers" id="answer{{ loop.index }}" value="{{ answer }}">
+            <label class="form-check-label" for="answer{{ loop.index }}">
+                {{ answer }}
+            </label>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary mt-3">Submit Answer</button>
+    </form>
+    <!--
+    {% if message %}
+        <div class="alert {{'alert-success' if message == 'Correct!' else 'alert-danger'}}" role="alert">
+            {{ message }}
+        </div>
+    {% endif %} -->
+
+    <!-- Add this inside the <body> tag, after the existing form -->
+        {% if message %}
+        <div class="alert {{'alert-success' if 'Correct!' in message else 'alert-danger'}}" role="alert">
+            {{ message }}
+        </div>
+        <!-- Next Question button -->
+        <a href="/next" class="btn btn-primary">Next Question</a>
+
+        <!--<a href="/next" class="btn btn-secondary mt-3">Next Question</a>-->
+        {% endif %}
+
+        <!-- Result Count Display -->
+
+        <!-- Result Count Display -->
+        <div class="mt-4">
+            <h4>
+                Correct Answers: <span class="badge badge-success">{{ correct_count }}</span> out of <span class="badge badge-info">{{ attempted_count }}</span>
+            </h4>
+        </div>
+        <!-- Progress Indicator -->
+        <div class="mt-4">
+            <h5>Progress: {{ attempted_count }} / {{ total_questions }}</h5>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: {{ (attempted_count / total_questions) * 100 }}%;" aria-valuenow="{{ attempted_count }}" aria-valuemin="0" aria-valuemax="{{ total_questions }}"></div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+
+{% endblock %}
+
+<!--
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>-->
+
+

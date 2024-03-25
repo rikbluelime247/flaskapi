@@ -1,0 +1,31 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Completed</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">-->
+
+{% extends 'base.html' %}
+
+    
+    {% block title %}Completed Quiz{% endblock %}
+
+{% block content %}
+
+
+    <div class="jumbotron">
+        <h1 class="display-4">Quiz Completed!</h1>
+        <p class="lead">You have completed this quiz.</p>
+        <hr class="my-4">
+        <p>Your Score: {{ correct_count }} out of {{ total_questions }}</p>
+        <a class="btn btn-primary btn-lg" href="/restart" role="button">Start Again</a>
+    </div>
+{% endblock %}
+
+
+<!--
+</body>
+</html>-->
